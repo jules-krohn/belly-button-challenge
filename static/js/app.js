@@ -1,5 +1,5 @@
 
-// Place url in a constant variable
+// Place url in a variable
 const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json"
 
 // Fetch the JSON data and console log it
@@ -36,16 +36,17 @@ function init() {
         // Log the value of sample_one
         console.log(sample_one);
 
-        // Build the initial plots
+    // Build the initial plots
         buildMetadata(sample_one);
         buildBarChart(sample_one);
         buildBubbleChart(sample_one);
         buildGaugeChart(sample_one);
 
+
     });
 };
 
-// Function that populates metadata info
+// Populate metadata info
 function buildMetadata(sample) {
 
     // Use D3 to retrieve all of the data
@@ -78,7 +79,48 @@ function buildMetadata(sample) {
 
 };
 
+// Function to create bar chart
+function buildBarChart(sample) {
+    //retrieve data
+    d3.json(url).then((data) => {
+        // retrieve data for chart
+        let bardata = data.samples 
+        // filter by sample id
+        let barArray = bardata.filter(sampleObject => sampleObject.id == sample);
+        //get first indext of array
+        let result = barArray[0];
+        // get values for chart: otu_ids for labels, otu_labels for hovertext
+        let sample_values = result.sample_values;
+        let otu_ids = result.otu_ids
+        let otu_labels = result.otu_labels
+
+        // set the top 10 items to display
+        let yticks = otu_ids.slice(0,10). map(id => `OTU ${id}`).reverse();
+        let xticks = sample_values.slice(0,10).reverse();
+        let labels = otu_labels.slice(0,10).reverse();
+        
+        // put data together to create the chart
+        let trace1 = {
+            x: xticks,
+            y: yticks,
+            text: labels,
+            type: "bar",
+            orientation: "h"
+            
+        };
+        
+        // layout
+        let layout = {
+            title: 'Top 10 OTUs per Individual',
+            showlegend: false,
+            yaxis: {title: 'OTU (Operational Taxonomic Unit) ID' }  
+        };
+        // Plotly plots the buildBarChart
+        Plotly.newPlot("bar", [trace1], layout)
+    });
+};
 
 
+    
 // Call the initialize function
 init();
