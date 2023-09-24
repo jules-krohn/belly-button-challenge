@@ -52,9 +52,9 @@ function optionChanged(value) {
     console.log(value); 
 
     // Call all functions 
-    buildMetadata(value);
-    buildBarChart(value);
-    buildBubbleChart(value);
+    createMetadata(value);
+    createBarChart(value);
+    createBubbleChart(value);
 };
     
 }
