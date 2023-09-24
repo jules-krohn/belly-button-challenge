@@ -40,7 +40,6 @@ function init() {
         buildMetadata(sample_one);
         buildBarChart(sample_one);
         buildBubbleChart(sample_one);
-        buildGaugeChart(sample_one);
 
 
     });
@@ -120,6 +119,50 @@ function buildBarChart(sample) {
     });
 };
 
+// Function that builds the bubble chart
+function buildBubbleChart(sample) {
+
+    // Use D3 to retrieve all of the data
+    d3.json(url).then((data) => {
+        
+        // Retrieve chart data
+        let bubbleData = data.samples;
+
+        // Filter based on the sample
+        let bubbleArray = bubbleData.filter(sampleObject => sampleObject.id == sample);
+        let result = bubbleArray[0];
+
+        // Set the chart parameters
+        let otu_ids = result.otu_ids;
+        let otu_labels = result.otu_labels;
+        let sample_values = result.sample_values;
+        
+        // Trace for bubble chart
+        let trace1 = {
+            x: otu_ids,
+            y: sample_values,
+            text: otu_labels,
+            mode: "markers",
+            marker: {
+                size: sample_values,
+                color: otu_ids,
+                colorscale: "Picnic"
+            }
+        };
+
+        // Set up the layout
+        let layout = {
+            title: "Bacteria Culture Per Sample",
+            hovermode: "closest",
+            xaxis: {title: "OTU ID"},
+        };
+
+        // Call Plotly to plot the bubble chart
+        Plotly.newPlot("bubble", [trace1], layout)
+    });
+
+
+};
 
     
 // Call the initialize function
