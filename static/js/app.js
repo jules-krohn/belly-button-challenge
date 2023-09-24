@@ -10,10 +10,10 @@ d3.json(url).then(function(data) {
 // Initialize the dashboard at start up 
 function init() {
 
-    // Use D3 to select the dropdown menu
+    // dropdown menu
     let dropdownMenu = d3.select("#selDataset");
 
-    // Use D3 to get sample names and populate the drop-down selector
+    // get sample names
     d3.json(url).then((data) => {
         
         // Set a variable for the sample names
@@ -37,9 +37,9 @@ function init() {
         console.log(sample_one);
 
     // Build the initial plots
-        buildMetadata(sample_one);
-        buildBarChart(sample_one);
-        buildBubbleChart(sample_one);
+        createMetadata(sample_one);
+        createBarChart(sample_one);
+        createBubbleChart(sample_one);
 
 
     });
@@ -59,7 +59,7 @@ function optionChanged(value) {
     
 }
 // Populate metadata info
-function buildMetadata(sample) {
+function createMetadata(sample) {
 
     // Use D3 to retrieve all of the data
     d3.json(url).then((data) => {
@@ -92,7 +92,7 @@ function buildMetadata(sample) {
 };
 
 // Function to create bar chart
-function buildBarChart(sample) {
+function createBarChart(sample) {
     //retrieve data
     d3.json(url).then((data) => {
         // retrieve data for chart
@@ -133,7 +133,7 @@ function buildBarChart(sample) {
 };
 
 // Function that builds the bubble chart
-function buildBubbleChart(sample) {
+function createBubbleChart(sample) {
 
     // Use D3 to retrieve all of the data
     d3.json(url).then((data) => {
