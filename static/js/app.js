@@ -44,7 +44,20 @@ function init() {
 
     });
 };
+// Function to change data based on dropdown selection
+function optionChanged(value) {
+    { 
 
+    // Log the new value
+    console.log(value); 
+
+    // Call all functions 
+    buildMetadata(value);
+    buildBarChart(value);
+    buildBubbleChart(value);
+};
+    
+}
 // Populate metadata info
 function buildMetadata(sample) {
 
