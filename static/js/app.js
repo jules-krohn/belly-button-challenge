@@ -44,6 +44,21 @@ function init() {
 
     });
 };
+// Function to change data based on dropdown selection
+function optionChanged(value) {
+    { 
+
+    // Log the new value
+    console.log(value); 
+
+    // Call all functions 
+    buildMetadata(value);
+    buildBarChart(value);
+    buildBubbleChart(value);
+};
+    
+}
+
 
 // Populate metadata info
 function createMetadata(sample) {
@@ -160,20 +175,6 @@ function createBubbleChart(sample) {
         // Call Plotly to plot the bubble chart
         Plotly.newPlot("bubble", [trace1], layout)
     });
-// Function to change data based on dropdown selection
-function optionChanged(value) {
-    { 
-
-    // Log the new value
-    console.log(value); 
-
-    // Call all functions 
-    buildMetadata(value);
-    buildBarChart(value);
-    buildBubbleChart(value);
-};
-    
-}
 
 };
 
