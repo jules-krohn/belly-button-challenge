@@ -7,7 +7,9 @@ The code  includes:
 - a bar chart that includes the top ten operational taxonomic units (OTU) for each individual
 - a bubble chart that visualizes OTU sample size
 
-I collaborated with Thom Banninga for this project
-Colorscale for the bubble chart came from:https://plotly.com/javascript/colorscales/
-I used Chat GPT to generate simple code for the drop down menu, class activities to create the bar chart, and plotly.com/javascript/basic-charts for simple bubble chart code
+I collaborated with Thom Banninga for this project.
+
+Colorscale for the bubble chart came from:https://plotly.com/javascript/colorscales/.
+
+I used Chat GPT to generate simple code for the drop down menu, class activities to create the bar chart, and plotly.com/javascript/basic-charts for simple bubble chart code.
 
